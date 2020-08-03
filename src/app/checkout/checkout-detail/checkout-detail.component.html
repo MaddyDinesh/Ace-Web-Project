@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Checkout</title>
+</head>
+
+<body>
+    <h2>Checkout</h2>
+    <div class="row">
+        <div class="col-75">
+            <div class="container">
+                <form [formGroup]="checkoutform" (ngSubmit)="onSubmit()">
+
+                    <div class="row">
+                        <div class="col-50">
+
+                            <h3>Contact InFormation</h3>
+                            <label for="email">Email</label><br>
+                            <input type="text" id="email" class="fontAwesome" name="email" placeholder="&#xf0e0; Email" formControlName="email">
+                            <span *ngIf="!checkoutform.get('email').valid && checkoutform.get('email').touched" class="help-block">Please enter a valid email</span>
+
+                            <label for="contact">Phone</label><br>
+                            <input type="text" id="phone" class="form-control fontAwesome" name="phone" placeholder="&#xf095; Phone Number" formControlName="contact">
+                            <span *ngIf="!checkoutform.get('contact').valid && checkoutform.get('contact').touched" class="help-block">Please enter a Phone number</span>
+
+                            <h3>Shipping Address</h3>
+                            <label for="name">Name</label><br>
+                            <input type="text" id="name" class="form-control fontAwesome" name="name" placeholder="&#xf2bd; Name" formControlName="name">
+                            <span *ngIf="!checkoutform.get('name').valid && checkoutform.get('name').touched" class="help-block">Please enter a name</span>
+
+                            <label for="Address">Address</label><br>
+                            <input type="text" id="address" class="form-control fontAwesome" name="address" placeholder="&#xf0e0; Address" formControlName="address">
+                            <span *ngIf="!checkoutform.get('address').valid && checkoutform.get('address').touched" class="help-block">Please enter a address</span>
+
+                            <label for="city">City</label><br>
+                            <input type="text" id="city" class="form-control fontAwesome" name="city" placeholder="&#xf1ad; City" formControlName="city">
+                            <span *ngIf="!checkoutform.get('city').valid && checkoutform.get('city').touched" class="help-block">Please enter a city</span>
+
+                            <div class="row">
+                                <div class="col-50">
+
+                                    <label for="country">Country</label>
+                                    <input type="text" id="country" class="form-control fontAwesome" name="country" placeholder="&#xf1ad; Country" formControlName="country">
+                                    <span *ngIf="!checkoutform.get('country').valid && checkoutform.get('country').touched" class="help-block">Please enter a country</span>
+                                </div>
+                                <div class="col-50">
+                                    <label for="postalCode">Postal Code</label>
+                                    <input type="text" id="postalCode" class="form-control fontAwesome" name="postalCode" placeholder="&#xf08d; Postal Code" formControlName="postalcode">
+                                    <span *ngIf="!checkoutform.get('postalcode').valid && checkoutform.get('postalcode').touched" class="help-block">Please enter a Postal Code</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-50">
+                            <button type="button" class="btn" (click)="onFetchData()">Fetch Data</button>
+                            <button type="button" class="btn" *ngIf="fetch" (click)="onHide()"> Hide Data</button>
+                            <p *ngIf="!fetch">Click Fetch Data to get Data from DataBase</p>
+                            <a *ngIf="fetch" class="list-group-item clearfix">
+                                <div class="pull-left">
+
+                                    <li class="list-group-item" *ngFor="let user of userArray">
+                                        <h4 class="list-group-item-heading">{{user.name}}</h4>
+                                        <p class="list-group-item-text">{{user.email}}
+                                            <p>
+                                                <p class="list-group-item-text">{{user.contact}}
+                                                    <p>
+                                                        <p class="list-group-item-text">{{user.address}}
+                                                            <p>
+                                                                <p class="list-group-item-text">{{user.city}}
+                                                                    <p>
+                                                                        <p class="list-group-item-text">{{user.country}}
+                                                                            <p>
+                                                                                <p class="list-group-item-text">{{user.postalcode}}
+                                                                                    <p>
+                                    </li>
+
+                                </div>
+
+                            </a>
+                        </div>
+                    </div>
+
+                    <div></div>
+                    <label>
+                        <input type="checkbox" checked="checked" name="sameadr"> Save this information for next time
+                    </label>
+                    <button type="submit" class="btnContinue">Continue</button>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script src="https://kit.fontawesome.com/yourcode.js"></script>
+
+</html>
